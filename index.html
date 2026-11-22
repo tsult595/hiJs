@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+     // RegExp is a built-in constructor function (a global class).
+     // There are two ways to create a RegExp object:
+     //   1. Literal notation:     /[A-Z]/g                (special syntax, no "new")
+     //   2. Constructor notation: new RegExp("[A-Z]", "g") (calls the RegExp constructor)
+     // Both create the same type of object.
+
+     // This is a LITERAL: the pattern is written between slashes
+     const regex = /[A-Z]/g;
+     const str = "Hello World";
+
+     // Array
+     console.log("match:", str.match(regex));  // Output: ["H", "W"]
+     console.log("matchAll:", [...str.matchAll(regex)]); // Output: [["H"], ["W"]] (each has index, input, groups)
+     console.log("split:", str.split(/\s+/));  // Output: ["Hello", "World"] (/\s+/ is also a literal)
+     console.log("exec:", regex.exec(str));  // Array with extra properties: index, input, groups
+
+     // Boolean
+     console.log("test:", regex.test(str));  // true (careful: regex has the g flag, so lastIndex is used)
+
+     // Number
+     console.log("search:", str.search(regex));  // Output: 0 (index of the first match)
+
+     // String
+     console.log("replace:", str.replace(regex, "*"));  // Output: "*ello *orld"
+
+     // Object
+     // LITERAL: fixed pattern, written directly in code
+     const literalRegex = /[A-Z]/g;
+     // CONSTRUCTOR: the pattern is a string, so it can be built dynamically (note: "\\d" needs double backslash)
+     const constructorRegex = new RegExp("[A-Z]", "g");
+
+     console.log("literal Regex object:", literalRegex);          // /[A-Z]/g
+     console.log("constructor Regex object:", constructorRegex);  // /[A-Z]/g (looks identical)
+     console.log("literal type:", typeof literalRegex);           // "object"
+     console.log("constructor type:", typeof constructorRegex);   // "object" (same type)
+     console.log(literalRegex instanceof RegExp);                 // true
+     console.log(constructorRegex instanceof RegExp);             // true
+    </script>
+</body>
+</html>
